@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}ns游戏社区{% endblock %}</title>
+
+	<!--Bootstrap -->
+	<link href={% static 'bootstrap-3.4.1-dist/css/bootstrap.css' %} rel="stylesheet">
+
+	<!-- HTML5 SHIM AND RESPOND.JS FORIE8 SUPPORT OF html5 elements and media queries -->
+	<!-- warning:respon.js doesn't work if you view the page via file:// -->
+	<!-- [if it ie9]>
+	  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	  <script src="https://sdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    {% block css %}{% endblock %}
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-nav" aria-expanded="flase">
+                    <span class="sr-only">切换导航条</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">ns游戏社区</a>
+            </div>
+
+            <!-- collect the nac links, forms,and other content for roggling -->
+            <div class="collapse navbar-collapse" id="my-nav">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="">首页</a> </li>
+                </ul>
+                 <ul class="nav navbar-nav">
+                    <li class="active"><a href="/community">社区</a> </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                 </form>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="/login/">登录</a> </li>
+                    <li><a href="/register/">注册</a> </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    {% block content %}{% endblock %}
+    <!-- jQuery(necessary for Bootstrap's Javascript plugins) -->
+    <script src="https://cdn.bootcss/jQuery/1.12.4/jQuery.min.js"></script>
+    <!-- Include all compiled plugins(below),or include individual files ad needed -->
+    <script src={% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}></script>
+</div>
+</body>
+</html>
