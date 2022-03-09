@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <title>CSS 网站布局</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* 创建并排的三个非等列 */
+.column {
+  float: left;
+  padding: 20px;
+}
+.column.side {
+    width:15%;
+}
+.column.middle {
+    width:70%;
+}
+/* 清除列之后的浮动 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* 响应式布局 - 创建堆叠而非并排的三列 */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+
+ {% if request.session.is_login %}
+    <h1 style="background-color:white;">你好,{{ request.session.user_name }}！欢迎回来！</h1>
+    {% else %}
+    <h1 style="background-color:white;">你尚未登录，只能访问公开内容！</h1>
+    {% endif %}
+</div>
+
+<div class="row">
+  <div class="column side">
+    {% if types %}
+    <ul style="list-style-type: none;margin: 0;padding: 0;width: 200px;background-color: #f1f1f1;border: 1px solid #555;">
+        {% for type in types%}
+            <h4><li style="text-align: center;border-bottom: 1px solid #555;"><a href="/category/">{{ type.name }}</a></li></h4>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong>暂无分类</strong>
+    {% endif %}
+
+    </div>
+    <div class="column middle">
+    <!-- 轮播 -->
+        <!-- 建立一个div控件作为图片框 -->
+        <div class="imgBox">
+            <!-- alt：图片路径失败时替换显示内容 -->
+            <img class="img-slide img" src="static/image/shouye1.jpeg" alt="img1">
+            <img class="img-slide img" src="static/image/shouye2.jpg" alt="img2">
+        </div>
+
+    <script type="text/javascript">
+        // index：索引， len：长度
+        var index = 0, len;
+        // 类似获取一个元素数组
+        var imgBox = document.getElementsByClassName("img-slide");
+        len = imgBox.length;
+        imgBox[index].style.display = 'block';
+        // 逻辑控制函数
+        function slideShow() {
+            index ++;
+            // 防止数组溢出
+            if(index >= len) index = 0;
+            // 遍历每一个元素
+            for(var i=0; i<len; i++) {
+                imgBox[i].style.display = 'none';
+            }
+            // 每次只有一张图片显示
+            imgBox[index].style.display = 'block';
+        }
+
+        // 定时器，间隔4s切换图片
+        setInterval(slideShow, 4000);
+    </script>
+
+    </div>
+    <div class="column side">
+        <h2 style="background: white"></h2>
+    </div>
+
+</div>
+</body>
+</html>

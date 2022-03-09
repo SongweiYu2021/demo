@@ -1,0 +1,45 @@
+body {
+  background-image: url("background.jpg");
+}
+/* 创建并排的三个非等列 */
+.column {
+  float: left;
+  padding: 15px;
+}
+.column.side{
+  width: 15px;
+}
+.column.middle{
+  width: 70px;
+}
+
+/* 清除列之后的浮动 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+/* 响应式布局 - 创建堆叠而非并排的三列 */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+.imgbox {
+
+    /* 避免因窗口变化影响图片效果 */
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: none;
+}

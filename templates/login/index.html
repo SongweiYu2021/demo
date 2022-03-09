@@ -1,16 +1,11 @@
-<!doctype html>
-<html lang="en">
-{% load static %}  <!----新增-使用静态模板-->
-<head>
-<title>NS游戏交流社区</title>
-</head>
-<body>
-<h1>Welcome to NS社区获取更多信息！</h1>
-<div>
-    <a href="/login/">登录    </a><a href="/register/">注册</a><br />
-    <img src="{% static "image/shouye1.jpeg"%}"
-         alt="picture of shouye1" />
-</div>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}首页{% endblock %}
+{% block content %}
+    {% if request.session.is_login %}
+    <h1>你好,{{ request.session.user_name }}！欢迎回来！</h1>
+    {% else %}
+    <h1>你尚未登录，只能访问公开内容！</h1>
+    {% endif %}
+
+{% endblock %}
 

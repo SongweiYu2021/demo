@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}我的主页{% endblock %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <div class="media-body">
+                <h1>{{ request.session.user_name }}</h1>
+                <h2 class="account-heading">{{ request.session.user_c_time }}</h2>
+                <p class="text-secondary">{{ user_sex }}</p>
+                <p>{{ user.nickname }}</p>
+                <P>{{ user.sex }}</P>
+            </div>
+        </div>
+    </div>
+{% endblock %}

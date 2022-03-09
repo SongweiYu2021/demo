@@ -16,14 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
 from login import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('community/', include('ns_community.urls')),
+    path('community/', views.community),
     path('login/', views.login),
-    path('register', views.register),
-    path('logout', views.logout),
-    # path('index/', views.index),
-    path('', include('home.urls'))
+    path('register/', views.register),
+    path('logout/', views.logout),
+    path('index/', views.index),
+    path('', include('home.urls')),
+    # 增加验证码路径
+    path('captcha', include('captcha.urls')),
+    path('profile/', views.profile),
+    path('about/', views.about),
+    path('category/', views.category),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
